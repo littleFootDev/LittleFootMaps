@@ -1,3 +1,13 @@
-p {
-    cursor: pointer;
+mat-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   
+    p {
+        cursor: pointer;
+    }
+    
+    button {
+        margin: 1rem auto;
+    }
 }

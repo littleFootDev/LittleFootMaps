@@ -47,7 +47,28 @@ export class CapitalService {
 
   public getCapital(index: number) {
     return this.capital$.value[index];
-  }
+  };
+
+ public addCapital(capital: ICapital) {
+  const value = this.capital$.value;
+  this.capital$.next([...value, capital]);
+ }
+
+ public editCapital(editedCapital: ICapital) {
+  const value = this.capital$.value;
+  this.capital$.next(
+    value.map((capital: ICapital) => {
+      if(capital.pays === editedCapital.pays) {
+        return editedCapital;
+        console.log(editedCapital);
+        
+      } else {
+        return capital;
+      }
+    })
+  )
+}
+
 
   constructor() { }
 }
