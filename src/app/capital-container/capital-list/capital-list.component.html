@@ -1,8 +1,9 @@
-<p>France</p>
-<mat-divider>f</mat-divider>
-<p>France</p>
-<mat-divider>f</mat-divider>
-<p>France</p>
-<mat-divider>f</mat-divider>
-<p>France</p>
-<mat-divider>f</mat-divider>
+<mat-card>
+    <p 
+        *ngFor="let capital of capitals; let index =index;"
+        [routerLink]="[index]"
+        routerLinkActive="mat-accent"
+    >{{ capital.pays }}
+    <mat-divider></mat-divider></p>
+   
+</mat-card>

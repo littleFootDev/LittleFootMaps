@@ -11,8 +11,8 @@ const routes: Routes = [
   children: [
     {path:"new", component: CapitalFormComponent},
     {path:":index/edit", component: CapitalFormComponent},
-    {path:":inde", component: CapitalDetailsComponent},
-    // {path: "", redirectTo: "0", pathMatch: "full"} 
+    {path:":index", component: CapitalDetailsComponent},
+    {path: "", redirectTo: "0", pathMatch: "full"} 
   ]},
   {path:"map", component: MapComponent}
 
