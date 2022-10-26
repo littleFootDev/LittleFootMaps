@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 
 import { ICapital } from 'src/app/shared/capital.interface';
@@ -16,7 +16,8 @@ export class CapitalDetailsComponent implements OnInit {
 
   constructor(
     private capitalService: CapitalService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -24,6 +25,14 @@ export class CapitalDetailsComponent implements OnInit {
       const capitalIndex = paramMap.get('index')!
      this.capital =  this.capitalService.getCapital(+capitalIndex)
     })
+  }
+
+  onDelete(): void {
+    this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
+      const capitalIndex = paramMap.get('index')!
+      this.capitalService.deleteCapital(+capitalIndex)
+    })
+    
   }
 
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import {filter, map} from 'rxjs/operators';
 
 import { ICapital } from './capital.interface';
 
@@ -68,7 +69,21 @@ export class CapitalService {
     })
   )
 }
+public deleteCapital(index: number) {
+  let value = this.capital$.value;
+  const capitalIndex = value[index]
 
+  if(capitalIndex !== null) {
+   const newCapital =  value.splice(index, 1)
+   console.log(value);
+   console.log(newCapital);
+   
+   return this.capital$.next(value);
+  } else {
+    value
+  }
+    
+}
 
   constructor() { }
 }
