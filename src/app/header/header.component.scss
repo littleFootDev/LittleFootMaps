@@ -1,0 +1,15 @@
+mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    ul{
+        list-style: none;
+        display: flex;
+        a { 
+            font-size: 0.7rem;
+            color: white;
+            text-decoration: none;
+        }
+    }
+}
