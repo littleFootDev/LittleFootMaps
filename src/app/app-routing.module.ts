@@ -7,19 +7,22 @@ import { CapitalFormComponent } from './capital-container/capital-form/capital-f
 import { MapComponent } from './map/map.component';
 
 const routes: Routes = [
-  {path:"", component: CapitalContainerComponent,
-  children: [
-    {path:"new", component: CapitalFormComponent},
-    {path:":index/edit", component: CapitalFormComponent},
-    {path:":index", component: CapitalDetailsComponent},
-    {path: "", redirectTo: "0", pathMatch: "full"} 
-  ]},
-  {path:"map", component: MapComponent}
-
+  { path: 'map', component: MapComponent },
+  {
+    path: 'capital',
+    component: CapitalContainerComponent,
+    children: [
+      { path: 'new', component: CapitalFormComponent },
+      { path: ':index/edit', component: CapitalFormComponent },
+      { path: ':index', component: CapitalDetailsComponent },
+      { path: '', redirectTo: '0', pathMatch: 'full' },
+    ],
+  },
+  { path: "", redirectTo: "capital", pathMatch: "full" },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -7,7 +7,14 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  
+  display: flex;
+  flex-direction: column;
+
+  .footer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+  }
 }
 
 .flex-50 {
@@ -19,13 +26,4 @@ body {
 
 .pl-10 {
   padding-left: 1remx;
-}
-main {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  .container{
-    
-    flex-grow: 1;
-  }
 }
