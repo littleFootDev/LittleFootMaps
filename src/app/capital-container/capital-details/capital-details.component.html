@@ -1,15 +1,17 @@
 
 <mat-accordion>
     <mat-expansion-panel>
-        <mat-expansion-panel-header></mat-expansion-panel-header>
+        <mat-expansion-panel-header>
+            {{capital.pays}}
+        </mat-expansion-panel-header>
         <div class="info">
-            <p>capital:  </p>
-            <p>population: habitant</p>
-            <p>coordonnées: latitude:  , longitude: </p>
+            <p>capital: {{capital.ville}} </p>
+            <p>population: {{capital.population}} habitant</p>
+            <p>coordonnées: latitude: {{capital.latitude}} , longitude: {{capital.longitude}}</p>
         </div>
         <mat-action-row>
-            <button mat-button color="primary">Edit</button>
-            <button mat-button color="warn">Delete</button>
+            <button routerLink="edit"mat-button color="primary">Edit</button>
+            <button mat-button color="warn" (click)="onDelete()">Delete</button>
         </mat-action-row>
     </mat-expansion-panel>
     

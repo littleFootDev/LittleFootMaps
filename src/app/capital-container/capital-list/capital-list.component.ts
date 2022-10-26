@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit,} from '@angular/core';
+
+import { ICapital } from 'src/app/shared/capital.interface';
+
 
 @Component({
   selector: 'app-capital-list',
@@ -6,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./capital-list.component.scss']
 })
 export class CapitalListComponent implements OnInit {
+  @Input() public capitals: ICapital[] | null = null;
+ 
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  
 }
