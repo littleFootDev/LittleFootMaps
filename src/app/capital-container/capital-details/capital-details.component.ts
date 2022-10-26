@@ -23,7 +23,7 @@ export class CapitalDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       const capitalIndex = paramMap.get('index')!
-     this.capital =  this.capitalService.getCapital(+capitalIndex)
+      this.capital =  this.capitalService.getCapital(+capitalIndex)
     })
   }
 

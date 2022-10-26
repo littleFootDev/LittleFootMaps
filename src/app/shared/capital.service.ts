@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import {filter, map} from 'rxjs/operators';
+import {filter, map, tap} from 'rxjs/operators';
 
 import { ICapital } from './capital.interface';
 
@@ -45,9 +45,11 @@ export class CapitalService {
       longitude: 139.691711
       },
   ]);
-
+ 
   public getCapital(index: number) {
+
     return this.capital$.value[index];
+    
   };
 
  public addCapital(capital: ICapital) {
@@ -61,8 +63,7 @@ export class CapitalService {
     value.map((capital: ICapital) => {
       if(capital.pays === editedCapital.pays) {
         return editedCapital;
-        console.log(editedCapital);
-        
+      
       } else {
         return capital;
       }
@@ -72,18 +73,48 @@ export class CapitalService {
 public deleteCapital(index: number) {
   let value = this.capital$.value;
   const capitalIndex = value[index]
-
+ 
   if(capitalIndex !== null) {
    const newCapital =  value.splice(index, 1)
    console.log(value);
    console.log(newCapital);
    
-   return this.capital$.next(value);
+   return this.capital$.next([...value]);
   } else {
     value
   }
     
 }
+
+getLocation(capitals: ICapital[]) {
+  capitals = this.capital$.value
+  console.log(capitals)
+  capitals.map((capitalInfo: ICapital) => {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition((capital: GeolocationPosition) => {
+        const latitude = capitalInfo.latitude
+        const longitude = capitalInfo.longitude
+        let location = {}
+        location = capital.coords.latitude
+        resolve({lat:  location , lng: capital = longitude!})
+        
+      })
+    })
+    
+    
+  })
+  
+  
+}
+
+// getLocationService() : Promise<any> {
+//   return new Promise((resolve, reject) => {
+//     navigator.geolocation.getCurrentPosition(response => {
+//      let test = 15
+//       resolve({lat: test, lng : response.coords.longitude})
+//     })
+//   })
+// }
 
   constructor() { }
 }
