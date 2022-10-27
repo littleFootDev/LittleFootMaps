@@ -86,26 +86,30 @@ public deleteCapital(index: number) {
     
 }
 
-getLocation(capitals: ICapital[]) {
-  capitals = this.capital$.value
-  console.log(capitals)
-  capitals.map((capitalInfo: ICapital) => {
-    return new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition((capital: GeolocationPosition) => {
-        const latitude = capitalInfo.latitude
-        const longitude = capitalInfo.longitude
-        let location = {}
-        location = capital.coords.latitude
-        resolve({lat:  location , lng: capital = longitude!})
+// getLocation(capitals: ICapital[]) {
+//   // capitals = this.capital$.value
+//   capitals.map((capitalInfo: ICapital) => {
+//     return new Promise((resolve, reject) => {
+//       navigator.geolocation.getCurrentPosition((capital: GeolocationPosition) => {
         
-      })
-    })
+//         let location = []
+        
+//           for (const capital of capitals) {
+//             location.push({latitude : capital.latitude, longitude: capital.longitude} )
+//           }
+        
+//           console.log(location)
+           
+//         resolve({lat:  location , lng: location})
+        
+//       })
+//     })
     
     
-  })
+//   })
   
   
-}
+// }
 
 // getLocationService() : Promise<any> {
 //   return new Promise((resolve, reject) => {

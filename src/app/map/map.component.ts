@@ -11,11 +11,11 @@ import { CapitalService } from '../shared/capital.service';
 })
 export class MapComponent implements AfterViewInit, OnInit {
   capitals: ICapital[] = this.capitalService.capital$.value;
+  
 
-
-  private initMap(): void {
+  private initMap(capitals: ICapital[]): void {
     navigator.geolocation.getCurrentPosition(function (position) {
-      const map = L.map('my-map', {
+       const map = L.map('my-map', {
         center: [position.coords.latitude, position.coords.longitude],
         zoom: 3,
       });
@@ -35,29 +35,63 @@ export class MapComponent implements AfterViewInit, OnInit {
         .addTo(map)
         .bindPopup('My position');
     });
-  }
-  getMarker(capitals: ICapital[]) {
-    capitals = this.capitalService.capital$.value;
-  
-    const markers = capitals.map((capital: ICapital) => {
-      const latitude = capital.latitude;
-      const longitude = capital.longitude;
-      const coords = [ latitude, longitude ];
-      // console.log(coords)
-      return coords;
+
+    capitals.map((capitalInfo) => {
+      navigator.geolocation.getCurrentPosition(
+        (capital: GeolocationPosition) => {
+          let location = [];
+          for (const capital of capitals) {
+            location.push({
+              latitude: capital.latitude,
+              longitude: capital.longitude,
+            });
+          }
+          let latitude: any = [];
+          let longitude: any = [];
+          for (const item of location) {
+           const markers= L.marker([item.latitude, item.longitude])
+           console.log(markers)
+          }
+
+          
+        }
+      );
     });
     
-    
   }
-  
+  // getMarker(capitals: ICapital[]) {
+  //   capitals.map((capitalInfo) => {
+  //     navigator.geolocation.getCurrentPosition(
+  //       (capital: GeolocationPosition) => {
+  //         let location = [];
+  //         for (const capital of capitals) {
+  //           location.push({
+  //             latitude: capital.latitude,
+  //             longitude: capital.longitude,
+  //           });
+  //         }
+  //         let latitude: any = [];
+  //         let longitude: any = [];
+  //         for (const item of location) {
+  //           latitude.push(item.latitude);
+  //           longitude.push(item.longitude);
+  //         }
+
+  //         // console.log(latitude, longitude)
+    
+  //       }
+  //     );
+  //   });
+  // }
 
   constructor(private capitalService: CapitalService) {}
   ngOnInit(): void {
-    this.getMarker(this.capitals);
-    console.log(this.capitalService.getLocation(this.capitals))
+    
+    // this.getMarker(this.capitals);
+    // this.capitalService.getLocation(this.capitals)
   }
-  
+
   ngAfterViewInit(): void {
-    this.initMap();
+    this.initMap(this.capitals);
   }
 }
